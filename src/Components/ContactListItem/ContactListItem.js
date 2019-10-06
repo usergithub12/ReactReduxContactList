@@ -8,18 +8,19 @@ import {
 } from "../../Action/ContactListItemActions";
 
 const ContactListItem = ({
+  name,
+  desc,
+  gender,
+  onContactDelete,
   btnChange,
   btnText,
   avatar,
-  favorite,
-  BTNCLICK,
-  FAVORITECLICK,
-  ONAVATAR
+  favorite
 }) => {
   // console.log(this.props);
   console.log("Favorite, ", favorite);
 
-  const { name, desc, gender, onContactDelete } = this.props;
+  // const { name, desc, gender, onContactDelete } = this.props;
 
   let btnStyle = "btn btn-default";
   let btnStar = "fa fa-star-o fa-2x star";
@@ -62,11 +63,14 @@ const ContactListItem = ({
   );
 };
 
-const mapStateToProps = ({ SearchReducer }) => {
+const mapStateToProps = ({ ContactListItemReducer }) => {
   // Деструктуризація. Дістаємо необхідний redcer
-  console.log("state = > ", SearchReducer);
+  console.log("state = > ", ContactListItemReducer);
   return {
-    search: SearchReducer.search
+    btnChange: ContactListItemReducer.btnChange,
+    btnText: ContactListItemReducer.btnText,
+    avatar: ContactListItemReducer.avatar,
+    favorite: ContactListItemReducer.favorite
   };
 };
 
