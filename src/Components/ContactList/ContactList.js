@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import ContactListItem from "../ContactListItem/ContactListItem";
 import Search from "../Search/Search";
 
@@ -8,6 +8,7 @@ const ContactList = ({
   onContactDelete,
   onSearch
 }) => {
+  console.log("List= ", ContactList);
   const newItem = ContactList.map(item => {
     return (
       <ContactListItem

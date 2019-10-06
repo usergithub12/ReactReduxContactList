@@ -1,31 +1,38 @@
 import React from "react";
 import "./Search.css";
 
-class Search extends React.Component {
-  state = {
-    search: " "
-  };
+import { connect } from "react-redux";
 
-  onSearch = e => {
-    //console.log(e.target.value);
-     const findContact = e.target.value;
-     this.setState({
-       search: findContact
-     });
-    this.props.onSearch(findContact);
-  };
+import { SEARCH } from "../../Action/SearchAction";
 
-  render() {
-    return (
-      <div className="col-md-10 offset-md-1 row-block">
-        <input
-          onChange={this.onSearch}
-          name="Search"
-          className="form-control searchInput"
-          placeholder="Search..."
-        />
-      </div>
-    );
-  }
-}
-export default Search;
+const Search = () => {
+  return (
+    <div className="col-md-10 offset-md-1 row-block">
+      <input
+        onChange={SEARCH}
+        name="Search"
+        className="form-control searchInput"
+        placeholder="Search..."
+      />
+    </div>
+  );
+};
+
+const mapStateToProps = ({ SearchReducer }) => {
+  // Деструктуризація. Дістаємо необхідний redcer
+  console.log("state = > ", SearchReducer);
+  return {
+    search: SearchReducer.search
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    SEARCH: () => dispatch(SEARCH())
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Search);
